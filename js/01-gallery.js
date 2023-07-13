@@ -6,9 +6,10 @@ console.log(galleryItems);
 const galleryContainer = document.querySelector('.gallery');
 const itemMarkup = createGalleryMarkup(galleryItems);
 
-galleryContainer.insertAdjacentHTML('beforeend', itemMarkup);
 
-galleryContainer.addEventListener('click', onGalleryContainer);
+galleryContainer.insertAdjacentHTML('beforeend', itemMarkup);
+galleryContainer.addEventListener('click', onClick);
+// galleryContainer.addEventListener('click', onGalleryContainer);
 
 function createGalleryMarkup(galleryItems) {
     return galleryItems
@@ -27,21 +28,76 @@ function createGalleryMarkup(galleryItems) {
         `;
     })
     .join('');
+
+
 }
 
 console.log(createGalleryMarkup(galleryItems));
 
-function onGalleryContainer(event) {
-// console.log(event.target);
+// [...galleryContainer.children].forEach(item => item.addEventListener('click', onClick))
 
-const isImageEl = event.target.classList.contains('gallery__image');
-const linkEl = document.querySelector('.gallery__link')
-if(!isImageEl) {
-    // event.stopImmediatePropagation(linkEl);
-    event.preventDefault();
+function  onClick(event) {
+  // знайти Url
+  if(!event.target.classList.contains("gallery__image")) {
+    return;
+  }
+  const originalUrl = event.target.dataset.source;
+  console.log(originalUrl);
 }
 
-document.body.style.backgroundColor = teal;
 
-}
+
+// 
+// const currentActiveImg =  document.querySelector('.gallery')
+// currentActiveImg.addEventListener('click', onGalleryContainer);
+// function onGalleryContainer(event) {
+//   if(event.target.nodeName !== 'IMG') {
+//     return;
+//   }
+
+//   const currentActiveBtn = document.querySelector('.gallery__image--active')
+// }
+
+// const instance = document.querySelector('.gallery__image').onclick = () => {
+
+// 	basicLightbox.create(`
+//      <div class="modal">
+// 		<img width="1400" height="900" src="https://placehold.it/1400x900">
+//     </div>
+// 	`).show()
+
+// }
+
+// console.log(instance);
+
+const instance = basicLightbox.create(`
+    <div class="modal">
+        <p>
+            Your first lightbox with just a few lines of code.
+            Yes, it's really that simple.
+        </p>
+     
+    </div>
+`)
+
+instance.show()
+
+
+// function onGalleryContainer(event) {
+// // console.log(event.target);
+
+// const isImageEl = event.target.classList.contains('gallery__image');
+
+// console.log(isImageEl);
+// const linkEl = document.querySelector('.gallery__link').value;
+// console.log(linkEl);
+// if(!isImageEl) {
+//     // event.stopImmediatePropagation(linkEl);
+//     event.preventDefault();
+// }
+
+// document.body.style.backgroundColor = teal;
+
+
+// }
 
