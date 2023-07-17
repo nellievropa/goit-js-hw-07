@@ -26,8 +26,7 @@ function createImageMarkup(galleryItems) {
         //    scale(1)
         //    opacity: 1"
            />
-        </a>
-        <div class="caption pos-bottom"
+<div class="caption pos-bottom"
         data-initial-display="block"
         opacity: 1
 
@@ -37,11 +36,13 @@ function createImageMarkup(galleryItems) {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
+   
 >
            ${description}
           
         </div>
+        </a>
+        
      </li>`;
      
     })
