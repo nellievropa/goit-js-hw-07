@@ -17,10 +17,29 @@ function createImageMarkup(galleryItems) {
         <a class="gallery__link" href="${original}">
            <img class="gallery__image" 
            src="${preview}" 
-           alt="${description}" />
+           alt="${description}"
+        //    data-scale="1"
+           data-translet-x= "0"
+           data-translet-y= "0"
+        //    style="display: block
+        //    transform: translate(0px, 0px)
+        //    scale(1)
+        //    opacity: 1"
+           />
         </a>
-        <div class="captions">
-            <h2>${description}</h2>
+        <div class="caption pos-bottom"
+        data-initial-display="block"
+        opacity: 1
+
+    color: #fff;
+    background: rgba(0,0,0,.8);
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+>
+           ${description}
           
         </div>
      </li>`;
@@ -46,3 +65,7 @@ gallery.on('show.simplelightbox', function () {
 }
 
 // captions 
+    // data-initial-display="block"
+    // style="display: block;
+    // // width: 250 px
+    // opacity: 1
