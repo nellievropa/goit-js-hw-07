@@ -14,7 +14,7 @@ buttonClick.addEventListener("keydown",onEscKeyPress);
 
 function createGalleryMarkup(galleryItems) {
     return galleryItems
-    .map(({preview, original})=> {
+    .map(({preview, original, description})=> {
         return `
         <li class="gallery__item">
   <a class="gallery__link" href="${original}">
@@ -22,15 +22,13 @@ function createGalleryMarkup(galleryItems) {
       class="gallery__image"
       src="${preview}"
       data-source="${original}"
-      alt="Image description"
+      alt="${description}"
     />
   </a>
 </li>
         `;
     })
     .join('');
-
-
 }
 
 console.log(createGalleryMarkup(galleryItems));
@@ -43,14 +41,14 @@ event.preventDefault();
     return;
   }
   const originalUrl = event.target.dataset.source;
-  const addModal = event.target.classList.add('--show-modal');
-  console.log(addModal);
+
   // console.log(originalUrl);
   const instance = basicLightbox.create(`
   <img src="${originalUrl}" width="1280" height="600">
 `)
 
 instance.show()
+// instance.close()
 onEscKeyPress()
 }
 
@@ -69,7 +67,7 @@ function onEscKeyPress(evt) {
   // томe треба додати умову с Code:
   // можна ще змінну додати
   const ESC_KEY_CODE = "Escape";
-  if(evt.target.code === ESC_KEY_CODE) {
+  if(evt.code === ESC_KEY_CODE) {
       onCloseModal();
   }
   
