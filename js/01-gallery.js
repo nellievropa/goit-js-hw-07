@@ -9,7 +9,7 @@ const buttonClick = document.querySelector('.gallery');
 
 galleryContainer.insertAdjacentHTML('beforeend', itemMarkup);
 galleryContainer.addEventListener('click', onImageClick);
-buttonClick.addEventListener("keydown",onEscKeyPress);
+// buttonClick.addEventListener("keydown",onEscKeyPress);
 
 
 function createGalleryMarkup(galleryItems) {
@@ -49,6 +49,14 @@ event.preventDefault();
 
 instance.show()
 // instance.close()
+  document.addEventListener('keydown', escapeListener);
+
+  // Закриваємо модальне вікно при кліку на велике зображення
+modal.element().addEventListener('click', event => {
+  if (event.target.nodeName === 'IMG') {
+    modal.close();
+  }
+});
 onEscKeyPress()
 }
 
@@ -72,8 +80,6 @@ function onEscKeyPress(evt) {
   }
   
   };
-
-
 
 
 

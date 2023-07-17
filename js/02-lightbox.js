@@ -19,7 +19,7 @@ function createImageMarkup(galleryItems) {
            src="${preview}" 
            alt="${description}" />
         </a>
-        <div class="color-meta">
+        <div class="captions">
             <h2>${description}</h2>
           
         </div>
