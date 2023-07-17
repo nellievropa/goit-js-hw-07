@@ -20,7 +20,7 @@ function createImageMarkup(galleryItems) {
            alt="${description}" />
         </a>
         <div class="color-meta">
-            <p>${description}</p>
+            <h2>${description}</h2>
           
         </div>
      </li>`;
@@ -34,12 +34,15 @@ function onImageClick(event) {
     console.log(event.target);
 event.preventDefault();
 const originalUrl = event.target.dataset.source;
-const download = event.target.alt
+const captions = event.target.alt
 // console.log(textContent);
-var lightbox = new SimpleLightbox('.gallery a', { originalUrl, download });
+// var lightbox = new SimpleLightbox('.gallery a', { originalUrl, captions });
 // import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
-
+let gallery = new SimpleLightbox('.gallery a');
+gallery.on('show.simplelightbox', function () {
+	// Do something…
+});
 
 }
 
-// download
+// captions 
