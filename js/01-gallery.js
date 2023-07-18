@@ -5,7 +5,7 @@ console.log(galleryItems);
 
 const galleryContainer = document.querySelector('.gallery');
 const itemMarkup = createGalleryMarkup(galleryItems);
-const buttonClick = document.querySelector('.gallery');
+
 
 galleryContainer.insertAdjacentHTML('beforeend', itemMarkup);
 galleryContainer.addEventListener('click', onImageClick);
@@ -35,71 +35,42 @@ console.log(createGalleryMarkup(galleryItems));
 
 
 function  onImageClick(event) {
-console.log(event.target.classList)
+// console.log(event.target.classList)
 event.preventDefault();
   if(!event.target.classList.contains("gallery__image")) {
     return;
   }
   const originalUrl = event.target.dataset.source;
-
   // console.log(originalUrl);
+
   const instance = basicLightbox.create(`
   <img src="${originalUrl}" width="1280" height="600">
-`)
+`,
 
-instance.show()
-// instance.close()
-  document.addEventListener('keydown', escapeListener);
+{
+  onShow: (instance) => {
+    window.addEventListener("keydown", onEscKeyPress);
+  },
 
-  // Закриваємо модальне вікно при кліку на велике зображення
-modal.element().addEventListener('click', event => {
-  if (event.target.nodeName === 'IMG') {
-    modal.close();
-  }
-});
-onEscKeyPress()
+  onClose: (instance) => {
+    window.removeEventListener("keydown", onEscKeyPress);
+  },
 }
+);
 
-
-function onCloseModal() {
-  // і відписуємось від  window.addEventListener('keydown', onEscKeyPress); перед закриттям модалки
-  window.removeEventListener('keydown', onEscKeyPress);
-  document.body.classList.remove('show-modal'); 
-}
+instance.show();
 
 function onEscKeyPress(evt) {
- 
-  console.log(evt.code);
+  //  console.log(evt.code);
 
-  // так працює і закривається при натисканні любої клавіші!
-  // томe треба додати умову с Code:
-  // можна ще змінну додати
-  const ESC_KEY_CODE = "Escape";
-  if(evt.code === ESC_KEY_CODE) {
-      onCloseModal();
-  }
-  
+ const ESC_KEY_CODE = "Escape";
+  if(evt.code !== ESC_KEY_CODE) {
+   return  
   };
+  instance.close();
+}
+}
 
 
 
-
-// function onClick(event) {
-// // console.log(event.target);
-
-// const isImageEl = event.target
-// console.log(isImageEl);
-// // .contains('gallery__image');
-// // const linkEl = document.querySelector('.gallery__link');
-// // console.log(linkEl);
-// if(!isImageEl) {
-//     // event.stopImmediatePropagation(linkEl);
-//     event.preventDefault();
-// }
-
-// isImageEl.classList.add("--active");
-// console.log(isImageEl.classList)
-
-
-// }
 

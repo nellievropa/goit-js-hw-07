@@ -13,36 +13,18 @@ function createImageMarkup(galleryItems) {
     return galleryItems
     .map(({ preview, original, description }) => {
        return `
-       <li class="gallery__item">
+       <li class="gallery__item" 
+       position: relative
+       display: block>
         <a class="gallery__link" href="${original}">
            <img class="gallery__image" 
            src="${preview}" 
            alt="${description}"
-        //    data-scale="1"
-           data-translet-x= "0"
-           data-translet-y= "0"
-        //    style="display: block
-        //    transform: translate(0px, 0px)
-        //    scale(1)
-        //    opacity: 1"
            />
-<div class="caption pos-bottom"
-        data-initial-display="block"
-        opacity: 1
-
-    color: #fff;
-    background: rgba(0,0,0,.8);
-    font-size: 1rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-   
->
-           ${description}
-          
-        </div>
         </a>
-        
+        <div uk-lightbox>
+    <a class="uk-button uk-button-default" href="${original}" data-caption="${description}"></a>
+</div>
      </li>`;
      
     })
@@ -50,23 +32,19 @@ function createImageMarkup(galleryItems) {
 };
 console.log(createImageMarkup(galleryItems));
 
+
+
 function onImageClick(event) {
-    console.log(event.target);
+   //  console.log(event.target);
 event.preventDefault();
-const originalUrl = event.target.dataset.source;
-const captions = event.target.alt
-// console.log(textContent);
-// var lightbox = new SimpleLightbox('.gallery a', { originalUrl, captions });
-// import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
-let gallery = new SimpleLightbox('.gallery a');
-gallery.on('show.simplelightbox', function () {
-	// Do something…
-});
+// const originalUrl = event.target.dataset.source;
+// const captions = event.target.alt
+
+const lightbox = new SimpleLightbox(".gallery a", {
+   captionsData: "alt",
+   captionPosition: "bottom",
+   captionDelay: 250,
+ });
 
 }
 
-// captions 
-    // data-initial-display="block"
-    // style="display: block;
-    // // width: 250 px
-    // opacity: 1
