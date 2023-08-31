@@ -23,7 +23,9 @@ function createImageMarkup(galleryItems) {
            />
         </a>
         <div uk-lightbox>
-    <a class="uk-button uk-button-default" href="${original}" data-caption="${description}"></a>
+    <a class="uk-button uk-button-default" 
+    href="${original}" data-caption="${description}">
+    </a>
 </div>
      </li>`;
      
@@ -47,4 +49,5 @@ const lightbox = new SimpleLightbox(".gallery a", {
  });
 
 }
+
 
