@@ -72,5 +72,15 @@ function onEscKeyPress(evt) {
 }
 
 
+// приклад закриття по ESC 
+// document.addEventListener("keydown", closer)
+// function closer(event) {
+//   if (event.code === "Escape") {
+//     instance.close(() => document.removeEventListener("keydown", closer));
+//   }
+// }
+// тут 2 проблеми: 
+// -якщо закрили по Ескейп - знявся ивентлистенер
+// -якщо закрили Х - залишився ивентлистенер
 
 
